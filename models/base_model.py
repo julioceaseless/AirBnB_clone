@@ -4,13 +4,9 @@ import uuid
 
 
 class BaseModel:
-    """
-    This class defines all common attributes/methods for other classes
-    """
+    """This class defines all common attributes/methods for other classes"""
     def __init__(self, *args, **kwargs):
-        """
-        recreate an instance from a dictonary representation
-        """
+        """recreate an instance from a dictonary representation"""
         if kwargs:
             for key, value in kwargs.items():
                 if key == "__class__":
@@ -26,8 +22,8 @@ class BaseModel:
 
     def to_dict(self):
         """
-        serialize an object to dictionary
-        Utilizes the __dict__ special object attribute
+        serialize an object to dictionary Utilizes
+        the __dict__ special object attribute
         """
         obj_to_dict = self.__dict__.copy()
         obj_to_dict['__class__'] = self.__class__.__name__
