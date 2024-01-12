@@ -1,13 +1,16 @@
 #!/usr/bin/python3
 from datetime import datetime
-from models import storage
 import uuid
 
 
 class BaseModel:
-    """This class defines all common attributes/methods for other classes"""
+    """
+    This class defines all common attributes/methods for other classes
+    """
     def __init__(self, *args, **kwargs):
-        """recreate an instance from a dictonary representation"""
+        """
+        recreate an instance from a dictonary representation
+        """
         if kwargs:
             for key, value in kwargs.items():
                 if key == "__class__":
@@ -20,12 +23,11 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            storage.new(self)
 
     def to_dict(self):
         """
-        serialize an object to dictionary Utilizes
-        the __dict__ special object attribute
+        serialize an object to dictionary
+        Utilizes the __dict__ special object attribute
         """
         obj_to_dict = self.__dict__.copy()
         obj_to_dict['__class__'] = self.__class__.__name__
@@ -35,10 +37,8 @@ class BaseModel:
 
     def __str__(self):
         """Return a string representation of the BaseModel instance."""
-        return "[{}] ({}) {}".format(self.__class__.__name__,
-                                     self.id, self.__dict__)
+        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
         """Update the 'updated_at' attribute with the current datetime."""
         self.updated_at = datetime.now()
-        storage.save()
