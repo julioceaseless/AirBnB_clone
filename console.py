@@ -128,36 +128,6 @@ class HBNBCommand(cmd.Cmd):
         except NameError:
             print("** class doesn't exist **")
     
-    def do_create_j(self, class_name):
-        """
-        create a new instance of BaseModel and save to JSON file
-        """
-        if class_name:
-            if class_name != "BaseModel":
-                print("** class doesn't exist **")
-            else:
-                bm1 = BaseModel()
-                bm1.save()
-                print(bm1.id)
-        else:
-            print("** class name missing **")
-
-    def do_all_j(self, class_name):
-        """
-        Prints all string representation of all instances
-        """
-        objects = storage.all()
-        if class_name:
-            if class_name != "BaseModel":
-                print("** class doesn't exist **")
-            else:
-                for key in objects:
-                    if key.split('.')[0] == "BaseModel":
-                        print([objects[key].__str__()])
-        else:
-            for key in objects:
-                print([objects[key].__str__()])
-
     def do_update(self, args):
         """ update instance based on class name and id """
         if args:
