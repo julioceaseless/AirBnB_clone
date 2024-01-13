@@ -19,18 +19,17 @@ class FileStorage:
         key takes the form <obj class name>.id
         """
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
-        FileStorage.__objects.update({key: obj})
+        FileStorage.__objects[key] = obj
 
     def save(self):
         """Save __objects to the JSON file (path: __file_path)."""
         obj_dict = {}
         for key, obj in FileStorage.__objects.items():
-            obj_dict.update({key: obj.to_dict()})
+            obj_dict[key] = obj.to_dict()
         with open(FileStorage.__file_path, 'w') as f:
             json.dump(obj_dict, f)
 
     def reload(self):
-
         from models.base_model import BaseModel
         """Restores objects from the JSON file."""
         try:
