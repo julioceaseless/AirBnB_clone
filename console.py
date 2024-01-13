@@ -127,35 +127,6 @@ class HBNBCommand(cmd.Cmd):
             print(instances_list)
         except NameError:
             print("** class doesn't exist **")
-    
-    def do_update(self, args):
-        """ update instance based on class name and id """
-        if args:
-            cmd_args = args.split(' ', 3)
-            # print(cmd_args)
-            if len(cmd_args) == 1:
-                print("** instance id missing **")
-                return
-            if len(cmd_args) == 2:
-                print("** attribute name missing **")
-                return
-            if len(cmd_args) == 3:
-                print("** value missing **")
-                return
-
-            if cmd_args[0] != "BaseModel":
-                print("** class doesn't exist **")
-                return
-            try:
-                key = "{}.{}".format(cmd_args[0], cmd_args[1])
-                instance = storage._FileStorage__objects[key]
-                setattr(instance, cmd_args[2], cmd_args[3].strip('"'))
-                storage.save()
-            except KeyError:
-                print("** no instance found **")
-        else:
-            print("** class name missing **")
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
