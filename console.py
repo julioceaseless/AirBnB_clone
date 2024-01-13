@@ -6,10 +6,7 @@ console.py - Entry point for the HBNB command interpreter.
 import cmd
 from models.base_model import BaseModel
 from models import storage
-<<<<<<< HEAD
-=======
 
->>>>>>> master
 
 class HBNBCommand(cmd.Cmd):
     """
