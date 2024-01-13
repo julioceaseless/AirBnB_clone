@@ -127,7 +127,7 @@ class HBNBCommand(cmd.Cmd):
             print(instances_list)
         except NameError:
             print("** class doesn't exist **")
-    
+
     def do_create_j(self, class_name):
         """
         create a new instance of BaseModel and save to JSON file
