@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" This module serializes and deserializes objects"""
 import json
 
 
