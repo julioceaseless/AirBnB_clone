@@ -5,6 +5,12 @@ console.py - Entry point for the HBNB command interpreter.
 
 import cmd
 from models.base_model import BaseModel
+from models.user import User
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
+from models.city import City
+from models.state import State
 from models import storage
 
 
@@ -63,15 +69,18 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
 
+        class_exists = False
         args = arg.split(' ', 1)
         instances = storage.all()
         class_name = args[0]
         for key in instances.keys():
-            if class_name == key.split('.')[0]:
-                continue
-            else:
-                print("** class doesn't exist **")
-                return
+            if key.split('.')[0] == class_name:
+                class_exists = True
+                break
+
+        if not class_exists:
+            print("** class doesn't exist **")
+            return
 
         if len(args) < 2:
             print("** instance id missing **")
@@ -92,13 +101,16 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
 
+        class_exits = False
         args = arg.split(' ', 1)
         instances = storage.all()
         class_name = args[0]
+
         for key in instances.keys():
             if class_name == key.split('.')[0]:
-                continue
-            else:
+                class_exists = True
+                break
+            if not class_exists:
                 print("** class doesn't exist **")
                 return
 
@@ -136,6 +148,44 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exit **")
         else:
             print(instances_list)
+
+    def do_update(self, args):
+        """ update instance based on class name and id """
+        if args:
+            cmd_args = args.split(' ', 3)
+            # print(cmd_args)
+            if len(cmd_args) == 1:
+                print("** instance id missing **")
+                return
+            if len(cmd_args) == 2:
+                print("** attribute name missing **")
+                return
+            if len(cmd_args) == 3:
+                print("** value missing **")
+                return
+
+            class_found = False
+            instances = storage.all()
+            class_name = cmd_args[0]
+            for key in instances.keys():
+                if key.split('.')[0] == class_name:
+                    class_found = True
+                    break
+
+            if not class_found:
+                print("** class doesn't exist **")
+                return
+            try:
+                key = "{}.{}".format(cmd_args[0], cmd_args[1])
+                print(key)
+                if key in instances:
+                    obj = instances[key]
+                    setattr(obj, cmd_args[2], cmd_args[3].strip('"'))
+                    storage.save()
+            except KeyError:
+                print("** no instance found **")
+        else:
+            print("** class name missing **")
 
 
 if __name__ == '__main__':
