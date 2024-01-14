@@ -3,6 +3,7 @@
 import json
 from os import path
 
+
 class FileStorage:
     """
     Serializes instances to a JSON file and
@@ -32,6 +33,12 @@ class FileStorage:
 
     def reload(self):
         from models.base_model import BaseModel
+        from models.user import User
+        from models.amenity import Amenity
+        from models.place import Place
+        from models.city import City
+        from models.state import State
+        from models.review import Review
         """Restores objects from the JSON file."""
         try:
             with open(FileStorage.__file_path, 'r') as f:

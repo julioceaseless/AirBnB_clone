@@ -1,5 +1,7 @@
 #!/usr/bin/python3
+"""Module for creating places"""
 from models.base_model import BaseModel
+
 
 class Place(BaseModel):
     """Place class"""
