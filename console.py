@@ -18,7 +18,19 @@ class HBNBCommand(cmd.Cmd):
     HBNBCommand - Command interpreter class.
     """
     prompt = "(hbnb) "
-    classes = ["BaseModel"]
+
+    def default(self, line):
+        """ custom commands """
+
+        # custom do_all
+        if line.endswith("all()"):
+            arg = line.split('.')[0]
+            self.do_all(arg)
+
+        # custom count
+        if line.endswith("count()"):
+            arg = line.split('.')[0]
+            self.do_count(arg)
 
     def do_quit(self, arg):
         """
@@ -180,6 +192,15 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
         else:
             print("** class name missing **")
+
+    def do_count(self, obj_type):
+        """count number of instances of class"""
+        count = 0
+        instances = storage.all()
+        for key in instances:
+            if obj_type == key.split('.')[0]:
+                count += 1
+        print(count)
 
 
 if __name__ == '__main__':
