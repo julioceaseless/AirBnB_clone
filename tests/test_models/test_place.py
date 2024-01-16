@@ -17,12 +17,13 @@ class TestUser(unittest.TestCase):
                       "description": "", "number_rooms": 0,
                       "number_bathrooms": 0, "max_guest": 0,
                       "price_by_night": 0, "latitude": 0.0,
-                      "longitude": 0.0, "amenity_ids": ""
+                      "longitude": 0.0, "amenity_ids": []
                       }
 
         for k in attributes:
             self.assertTrue(hasattr(place, k))
-            # self.assertIs(place.k, attributes[k])
+            value = getattr(place, k)
+            self.assertEqual(value, attributes[k])
 
     def test_inheritance(self):
         place = Place()
