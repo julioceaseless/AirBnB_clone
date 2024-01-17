@@ -21,15 +21,19 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     def find_match(_str, sub_str):
-        """ use to find matches in custom commands"""
+        """
+        helper function finds matches in custom commands
+        sample string: User.show("38f22813-2753-4d42-b37c-57a17f1e4f88")
+        """
         full_arg = ""
         if sub_str in _str:
             class_name = _str.split('.')[0]
             id_string = _str.split('.')[1]
-            match = re.search(r'\("([^"]+)"\)', id_string)
-            if match:
-                obj_id = match.group(1)
-                full_arg = class_name + " " + obj_id
+            start_index = id_string.find('("') + 2
+            end_index = id_string.find('")', start_index)
+            # match = re.search(r'\("([^"]+)"\)', id_string)
+            obj_id = id_string[start_index:end_index]
+            full_arg = class_name + " " + obj_id
         return full_arg
 
     def default(self, line):
@@ -54,6 +58,24 @@ class HBNBCommand(cmd.Cmd):
         if "destroy(" in line:
             arg = HBNBCommand.find_match(line, "destroy(")
             self.do_destroy(arg)
+
+        # custom update command
+        if "update(" in line:
+            class_name = line.split('.')[0]
+            arg_str = line.split('.')[1]
+            match = re.search(r'\((.*?)\)', arg_str)
+            command_str = ""
+            if match:
+                command_str = ""
+                str_in_brkt = match.group(1)
+                result_tuple = tuple(map(str.strip, str_in_brkt.split(',')))
+                len_ = len(result_tuple)
+                for i in range(len_ - 1):
+                    result_tuple[i].strip('"')
+                    command_str += result_tuple[i].strip('"') + " "
+                command_str += result_tuple[len_ - 1]
+            arg = class_name + " " + command_str
+            self.do_update(arg)
 
     def do_quit(self, arg):
         """
