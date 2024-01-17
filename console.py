@@ -3,6 +3,7 @@
 console.py - Entry point for the HBNB command interpreter.
 """
 import cmd
+import re
 from models.base_model import BaseModel
 from models.user import User
 from models.place import Place
@@ -19,6 +20,18 @@ class HBNBCommand(cmd.Cmd):
     """
     prompt = "(hbnb) "
 
+    def find_match(_str, sub_str):
+        """ use to find matches in custom commands"""
+        full_arg = ""
+        if sub_str in _str:
+            class_name = _str.split('.')[0]
+            id_string = _str.split('.')[1]
+            match = re.search(r'\("([^"]+)"\)', id_string)
+            if match:
+                obj_id = match.group(1)
+                full_arg = class_name + " " + obj_id
+        return full_arg
+
     def default(self, line):
         """ custom commands """
 
@@ -31,6 +44,16 @@ class HBNBCommand(cmd.Cmd):
         if line.endswith("count()"):
             arg = line.split('.')[0]
             self.do_count(arg)
+
+        # custom show eg <class name>.show(<id>)
+        if "show(" in line:
+            arg = HBNBCommand.find_match(line, "show(")
+            self.do_show(arg)
+
+        # custom destroy eg <class name>.destroy(<id>)
+        if "destroy(" in line:
+            arg = HBNBCommand.find_match(line, "destroy(")
+            self.do_destroy(arg)
 
     def do_quit(self, arg):
         """
