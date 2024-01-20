@@ -3,6 +3,7 @@
 console.py - Entry point for the HBNB command interpreter.
 """
 import cmd
+import re
 from models.base_model import BaseModel
 from models.user import User
 from models.place import Place
@@ -18,7 +19,61 @@ class HBNBCommand(cmd.Cmd):
     HBNBCommand - Command interpreter class.
     """
     prompt = "(hbnb) "
-    classes = ["BaseModel"]
+
+    def find_match(_str):
+        """
+        helper function finds matches in custom commands
+        sample string: User.show("38f22813-2753-4d42-b37c-57a17f1e4f88")
+        """
+        full_arg = ""
+        class_name = _str.split('.')[0]
+        id_string = _str.split('.')[1]
+        match = re.search(r'\("([^"]+)"\)', id_string)
+        if match:
+            obj_id = match.group(1)
+        full_arg = class_name + " " + obj_id
+        return full_arg
+
+    def default(self, line):
+        """ custom commands """
+
+        # custom do_all
+        if line.endswith("all()"):
+            arg = line.split('.')[0]
+            self.do_all(arg)
+
+        # custom count
+        if line.endswith("count()"):
+            arg = line.split('.')[0]
+            self.do_count(arg)
+
+        # custom show eg <class name>.show(<id>)
+        if "show(" in line:
+            arg = HBNBCommand.find_match(line)
+            self.do_show(arg)
+
+        # custom destroy eg <class name>.destroy(<id>)
+        if "destroy(" in line:
+            arg = HBNBCommand.find_match(line)
+            self.do_destroy(arg)
+
+        # custom update command
+        if "update(" in line:
+            class_name = line.split('.')[0]
+            arg_str = line.split('.')[1]
+            match = re.search(r'\((.*?)\)', arg_str)
+            command_str = ""
+            if match:
+                command_str = ""
+                str_in_brkt = match.group(1)
+                result_tuple = tuple(map(str.strip, str_in_brkt.split(',')))
+                len_ = len(result_tuple)
+                for i in range(len_ - 1):
+                    result_tuple[i].strip('"')
+                    command_str += result_tuple[i].strip('"') + " "
+                command_str += result_tuple[len_ - 1]
+            arg = class_name + " " + command_str
+            self.do_update(arg)
 
     def do_quit(self, arg):
         """
@@ -180,6 +235,15 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
         else:
             print("** class name missing **")
+
+    def do_count(self, obj_type):
+        """count number of instances of class"""
+        count = 0
+        instances = storage.all()
+        for key in instances:
+            if obj_type == key.split('.')[0]:
+                count += 1
+        print(count)
 
 
 if __name__ == '__main__':
