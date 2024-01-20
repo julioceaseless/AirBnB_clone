@@ -1,0 +1,21 @@
+.popover {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: #484848;
+    width: 100%;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    background-color: #FAFAFA;
+    position: absolute;
+    z-index: 1;
+}
+
+.filters:hover .popover {
+    display: block;
+}
+
+.locations h2 {
+    font-size: 16px;
+}
