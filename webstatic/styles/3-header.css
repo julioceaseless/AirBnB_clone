@@ -1,0 +1,14 @@
+/* header styling */
+header {
+	background-color: #FFFFFF;
+	height: 70px;
+	width: 100%;
+	border: bottom 1px #CCCCCC;
+}
+.logo {
+	margin: 0 auto;
+	content: url("../images/logo.png");
+	left: 20px;
+	display: inline-block;
+	display: absolute;
+}
