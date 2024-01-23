@@ -11,7 +11,7 @@
 	font-size: 30px;
 }
 
-article {
+.places article {
 	background-color: white;
 	display: flex;
 	justify-content: flex-end;
@@ -31,7 +31,7 @@ article {
 	margin-top: -21%;
 	align-self: flex-end;
 }
-.price_by_night p {
+.price_by_night div {
 	height: 80px;
 	width: 80px;
 	display: table-cell;
