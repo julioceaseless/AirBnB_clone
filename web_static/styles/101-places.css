@@ -70,6 +70,7 @@
 }
 .user {
 	margin-top: 4%;
+	margin-bottom: 4%;
 }
 .listAmenities,
 .listReviews {
@@ -112,7 +113,6 @@
 	margin-right: 2%;
 	margin-bottom: -1%;
 }
-
 .listReviews ul {
 	margin-bottom: 2.5%;
 }
