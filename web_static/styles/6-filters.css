@@ -49,10 +49,10 @@ button:hover {
 	margin-left: 50px;
 }
 .popover {
-	background-color: #f5f4f4;
 	position: relative;
+	background-color: #F5F4F4;
+	border: 1px solid #DDDDDD;
 	border-radius: 4px;
-	border: 1px solid #dddddd;
 	padding-left: 30px;
 	right: 1px;
 	width: auto;
@@ -61,23 +61,18 @@ button:hover {
 	height: 350%;
 	line-height: 180%;
 	margin-top: -0.6%;
+	visibility: hidden;
 }
 .popover ul {
 	text-align: left;
 	list-style-type: none;
 	margin-top: -10px;
 }
-.amenities ul {
-	height: 220%;
-}
-.popover {
-	padding-top: 20px;
-	height: 320%;
-	padding-left: 50px;
-}
+
 .popover ul li {
 	margin-left: -20px;
 }
+
 li {
 	color: black;
 }

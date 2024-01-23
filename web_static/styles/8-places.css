@@ -23,7 +23,7 @@ article {
 	height: 100%;
 	border-radius: 4px;
 }
-.titlePlace {
+.places article h2 {
 	font-size: 30px;
 	margin: 2% auto 10% auto;
 }
@@ -31,7 +31,7 @@ article {
 	margin-top: -21%;
 	align-self: flex-end;
 }
-.price_by_night div {
+.price_by_night p {
 	height: 80px;
 	width: 80px;
 	display: table-cell;

@@ -12,7 +12,7 @@
 	font-size: 30px;
 }
 
-article {
+.places article {
 	background-color: white;
 	display: flex;
 	justify-content: flex-end;
@@ -23,7 +23,7 @@ article {
 	border: 1px #ff5a5f solid;
 	border-radius: 4px;
 }
-.titlePlace {
+.places article h2 {
 	font-size: 30px;
 	margin: 2% auto 10% auto;
 }
