@@ -1,0 +1,29 @@
+/* styling for places */
+.places {
+	color: black;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+article {
+	background-color: whitek;
+	text-align: center;
+	width: 390px;
+	padding: 20px;
+	margin: 20px;
+	border: 1px solid #FF5A5F;
+	border-radius: 4px;
+}
+.places h1 {
+	font-size: 30px;
+	text-align: left;
+	width: 100%;
+	margin-left: 30px;
+	margin-bottom: 5px;
+}
+
+.places article h2 {
+	margin: 0 auto;
+	font-size: 30px;
+}

@@ -1,0 +1,126 @@
+.places {
+	color: black;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: flex-start;
+}
+.places h1 {
+	text-align: left;
+	width: 100%;
+	margin-left: 0 30px 5px 0;
+	font-size: 30px;
+}
+
+.places article {
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	width: 390px;
+	height: auto;
+	padding: 20px;
+	margin: 2px 20px 20px;
+	border: 1px #ff5a5f solid;
+	border-radius: 4px;
+	align-self: stretch;
+}
+.places article > h2 {
+	font-size: 30px;
+	margin: 2% auto 10% auto;
+}
+.price_by_night {
+	margin-top: -21%;
+	align-self: flex-end;
+}
+.price_by_night div {
+	height: 80px;
+	width: 80px;
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	border-radius: 50%;
+	border: 4px solid #ff5a5f;
+	font-size: 30px;
+	color: #ff5a5f;
+}
+.information {
+	margin-top: 2%;
+	display: flex;
+	justify-content: space-evenly;
+	height: 80px;
+	border-top: 2px solid #dddddd;
+	border-bottom: 2px solid #dddddd;
+}
+.information div {
+	width: 100px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+	background-repeat: no-repeat;
+}
+.max_guest {
+	background: url("../images/icon_group.png") no-repeat top center;
+}
+.number_rooms {
+	background: url("../images/icon_bed.png") no-repeat top center;
+}
+.number_bathrooms {
+	background: url("../images/icon_bath.png") no-repeat top center;
+}
+.user {
+	margin-top: 4%;
+	margin-bottom: 4%;
+}
+.listAmenities,
+.listReviews {
+	margin-top: 40px;
+}
+.listAmenities h2,
+.listReviews h2 {
+	width: 100%;
+	font-size: 16px;
+	border-bottom: 2px solid #DDDDDD;
+}
+.listAmenities ul,
+.listReviews ul {
+	list-style: none;
+	padding: 0.2% 0 0 0;
+}
+.listAmenities ul li {
+	margin-top: 6px;
+}
+.listTv::before {
+	background-image: url("../images/icon_tv.png");
+}
+.listWifi::before {
+	background-image: url("../images/icon_wifi.png");
+}
+.listPet::before {
+	background-image: url("../images/icon_pets.png");
+}
+.listTv::before,
+.listWifi::before,
+.listPet::before {
+	height: 23px;
+	width: 23px;
+	content: "";
+	position: relative;
+	display: inline-block;
+	top: -90%;
+	background-size: cover;
+	background-repeat: no-repeat;
+	margin-right: 2%;
+	margin-bottom: -1%;
+}
+.listReviews ul {
+	margin-bottom: 2.5%;
+}
+.userReview {
+	font-size: 14px;
+	margin: 0 auto;
+}
+.descriptionReview {
+	margin-top: 1.2%;
+	font-size: 13px;
+}
