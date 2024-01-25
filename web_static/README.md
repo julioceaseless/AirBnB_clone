@@ -3,7 +3,6 @@
 ## Language(s):
 ![Static Badge](https://img.shields.io/badge/HTML-orange)
 ![Static Badge](https://img.shields.io/badge/CSS-Green)
-CSS
 ### Objectives:
 This is part of the AirBnB Clone project. It involves creating the web user interface. 
 
